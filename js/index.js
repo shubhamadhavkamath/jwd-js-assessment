@@ -23,6 +23,7 @@ const submitButton = document.getElementById('btnSubmit');
 const scoreDiv = document.getElementById('score');
 const resetButton = document.getElementById('btnReset');
 let quizSubmitted = false;
+
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
@@ -105,13 +106,33 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       scoreDiv.innerHTML= `<h1>Your score is ${score}/5`;
       quizSubmitted = true;
+      
     });
+    
   };
 
   // call the displayQuiz function
   displayQuiz();
 
+  
+
+
+
+
+  ///////////// disabling the radio buttons
+
+
+  const disableRadioButton = () => {
+    if(quizSubmitted) {
+      submitButton.setAttribute('disabled', 'true');
+    
+    }
+  }
+
+
+
   submitButton.addEventListener('click', calculateScore);
+  submitButton.addEventListener('click', disableRadioButton);
 
 //-----************************************************* Timer function
 
