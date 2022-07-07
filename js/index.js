@@ -19,6 +19,9 @@
       5. Add a countdown timer - when the time is up, end the quiz, display the score and highlight the correct answers
 *************************** */
 
+const submitButton = document.getElementById('btnSubmit');
+const scoreDiv = document.getElementById('score');
+const resetButton = document.getElementById('btnReset');
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
@@ -40,10 +43,20 @@ window.addEventListener('DOMContentLoaded', () => {
       a: 3,
     },
     {
-      q: 'What is the capital of Australia',
+      q: 'What is the capital of Australia?',
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'What is the capital of India?',
+      o: ['Delhi', 'Mumbai', 'Chennai', 'Bangalore'],
+      a:0,
+    },
+    {
+      q: 'In which city is The Phantom of the Opera set? ',
+      o: ['London', 'Sydney', 'Paris', 'Rome'],
+      a:2,
+    }
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -76,15 +89,59 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = 'green';
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
-        }
+          if(quizItem.a == i) {
+            score+=1;
+
+          } else {
+            liElement.style.backgroundColor = 'red';
+          }
+        } 
       }
+      scoreDiv.innerHTML= `<h1>Your score is ${score}/5`;
     });
   };
 
   // call the displayQuiz function
   displayQuiz();
+
+  submitButton.addEventListener('click', calculateScore);
+
+//-----************************************************* Timer function
+
+const timer =  document.getElementById('time');
+const totalTime = 1;
+let totalSeconds = totalTime * 60;
+
+
+
+
+
+const timerCountdown = () => {
+  const minutes = Math.floor(totalSeconds/60)
+  const seconds = totalSeconds % 60;
+  if(totalSeconds > 0) {
+    timer.innerText = `${minutes}:${seconds}`;
+    totalSeconds--;
+  } else {
+    timer.innerText = "Times Up!";
+    calculateScore();
+  }
+}
+
+setInterval(timerCountdown, 1000);
+
 });
+
+///////////////////*********************** Reset function */
+
+const resetFunction = () => {
+  window.location.reload();
+}
+
+
+resetButton.addEventListener('click',resetFunction);
