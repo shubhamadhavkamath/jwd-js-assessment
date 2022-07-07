@@ -27,6 +27,7 @@ let quizSubmitted = false;
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
+    setInterval(timerCountdown, 1000);
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
   });
@@ -166,7 +167,7 @@ const timerCountdown = () => {
   } 
 }
 
-setInterval(timerCountdown, 1000);
+
 
 });
 
