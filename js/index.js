@@ -103,11 +103,14 @@ window.addEventListener('DOMContentLoaded', () => {
           } else {
             liElement.style.backgroundColor = '#F37878';
           }
+          
         } 
+        radioElement.disabled = true;
       }
       scoreDiv.innerHTML= `<h1>Your score is ${score}/5`;
       quizSubmitted = true;
       return score;
+      
     });
     
   };
