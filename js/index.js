@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
-          liElement.style.backgroundColor = 'green';
+          liElement.style.backgroundColor = '#D9F8C4';
         }
 
         if (radioElement.checked) {
@@ -101,13 +101,13 @@ window.addEventListener('DOMContentLoaded', () => {
             score+=1;
 
           } else {
-            liElement.style.backgroundColor = 'red';
+            liElement.style.backgroundColor = '#F37878';
           }
         } 
       }
       scoreDiv.innerHTML= `<h1>Your score is ${score}/5`;
       quizSubmitted = true;
-      return
+      return score;
     });
     
   };
@@ -126,6 +126,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const disableRadioButton = () => {
     if(quizSubmitted) {
       submitButton.setAttribute('disabled', 'true');
+      
     
     } else {
       submitButton.setAttribute('disabled', 'false');
