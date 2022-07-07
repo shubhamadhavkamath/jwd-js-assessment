@@ -106,7 +106,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       scoreDiv.innerHTML= `<h1>Your score is ${score}/5`;
       quizSubmitted = true;
-      
+      return
     });
     
   };
@@ -126,7 +126,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if(quizSubmitted) {
       submitButton.setAttribute('disabled', 'true');
     
+    } else {
+      submitButton.setAttribute('disabled', 'false');
     }
+
+
   }
 
 
@@ -158,6 +162,7 @@ const timerCountdown = () => {
   } else {
     timer.innerText = "Times Up!";
     calculateScore();
+    disableRadioButton();
   } 
 }
 
