@@ -22,6 +22,7 @@
 const submitButton = document.getElementById('btnSubmit');
 const scoreDiv = document.getElementById('score');
 const resetButton = document.getElementById('btnReset');
+let quizSubmitted = false;
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
@@ -103,6 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
         } 
       }
       scoreDiv.innerHTML= `<h1>Your score is ${score}/5`;
+      quizSubmitted = true;
     });
   };
 
@@ -126,11 +128,16 @@ const timerCountdown = () => {
   const seconds = totalSeconds % 60;
   if(totalSeconds > 0) {
     timer.innerText = `${minutes}:${seconds}`;
-    totalSeconds--;
+    // totalSeconds--;
+    if (quizSubmitted === false) {
+      totalSeconds--;
+    } else {
+      timer.innerText = `${minutes}:${seconds}`;
+    }
   } else {
     timer.innerText = "Times Up!";
     calculateScore();
-  }
+  } 
 }
 
 setInterval(timerCountdown, 1000);
