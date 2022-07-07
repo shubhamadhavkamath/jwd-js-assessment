@@ -148,6 +148,7 @@ setInterval(timerCountdown, 1000);
 
 const resetFunction = () => {
   window.location.reload();
+  quizSubmitted = false;
 }
 
 
